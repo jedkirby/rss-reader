@@ -1,0 +1,89 @@
+REQUIREMENTS
+-----------------------------------------------------------
+PHP v5.5 or higher.
+
+
+
+INTRODUCTION
+-----------------------------------------------------------
+For this I'll assume you'll already have an Apache, PHP & MySQL 
+server setup. If you do not, I'd suggest using software 
+like MAMP for OSX or WAMP for Windows.
+
+
+
+HOSTS
+-----------------------------------------------------------
+In an ideal situation, I'd prefer to create a specific 
+hostname for this application to be run locally. The 
+hostname I've chosen is "rssfeeder.com.local".
+
+OSX: Open up terminal and type "sudo nano /etc/hosts", Add 
+a new record for "127.0.0.1 rssfeeder.com.local".
+
+Windows: Open the following file in Notepad 
+"C:\Windows\System32\Drivers\etc\hosts", Add the same record 
+as above; "127.0.0.1 rssfeeder.com.local"
+
+
+
+APACHE
+-----------------------------------------------------------
+If you're using the above hosts method, you'll need to 
+ensure Apache is using virtual hosts which will mean 
+enabling the file "httpd-vhosts.conf" within apache's 
+"httpd.conf" file.
+
+Once that's enabled, you'll need to add the virtual host 
+config to the file (See: apache-vhost.conf for an example, 
+updating the DocumentRoot with the path to the PUBLIC of the 
+app files) "httpd-vhosts.conf" which we've just enabled 
+above.
+
+If you're not using the virtual hosts method, you'll need 
+to install the website files into the default folder 
+location for where Apache runs the website from.
+
+After restarting apache you should be able to see the app 
+running if you locate your browser to 
+"http://rssfeeder.com.local" or apache's default; 
+"http://localhost", albeit, there is probably a error 
+message for the database connection - this is the next task.
+
+
+
+DATABASE
+-----------------------------------------------------------
+We'll need to firstly create a new user & database for the 
+app to use. Within PhpMyAdmin (PMA), which is shipped with 
+MAMP/WAMP, if you click on the "Users" tab, then select
+"Add User", fill in the following details:
+
+Database:	rssfeeder
+Username:	rssfeeder
+Host:		%
+Password: 	Lg924o99818P64t
+
+Then tick the box "Create database with same name and grant 
+all privileges".
+
+We then need to run the script to add the correct tables for 
+our app (See: database.sql). Import this script into the 
+rssfeeder database which should add the table "feeds".
+
+After the above is complete, we should then have a database 
+with the correct user and table which we can use to connect 
+from the application.
+
+
+
+APPLICATION
+-----------------------------------------------------------
+There is a database configuration file located 
+in "App/config/database.php". Open up this file and amend 
+any of the properties which need to be changed.
+
+Generally the `hostname` will need to be changed to 
+127.0.0.1 to account for your server architecture, however, 
+if you've not used the above database credentials, you can 
+also modify these here too.

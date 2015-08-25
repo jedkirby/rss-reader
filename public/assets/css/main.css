@@ -1,0 +1,22 @@
+.site {
+	margin-top: 60px;
+}
+.site__panel {
+	margin-top: 60px;
+}
+.site__form {
+	margin-top: 1em;
+}
+
+.feed__list {
+	margin-bottom: 0;
+}
+
+.nav__controls {
+	margin-top: 10px;
+}
+
+.validation__error {
+	font-size: 12px;
+	margin-bottom: 0;
+}
